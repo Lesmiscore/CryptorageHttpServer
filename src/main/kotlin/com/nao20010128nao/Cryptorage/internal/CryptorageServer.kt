@@ -61,7 +61,7 @@ internal class CryptorageServer(
         } else {
             var start = 0
             var length = -1
-            if ("Range" in req.headers) {
+            if (supportPartial && "Range" in req.headers) {
                 val range = req.headers["Range"]
                 require(range.startsWith("bytes="))
                 val bytesRange = range.substring(6).split('-')
@@ -70,7 +70,9 @@ internal class CryptorageServer(
                     length = bytesRange[1].toInt() - start
                 }
             }
-            resp.headers.add("Accept-Ranges", "bytes")
+            if(supportPartial){
+                resp.headers.add("Accept-Ranges", "bytes")
+            }
             resp.sendHeaders(
                     if (start == 0) 200 else 206,
                     if (length == -1) cryptorage.size(whatToDeliver) - start else length.toLong(),
