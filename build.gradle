@@ -28,7 +28,7 @@ repositories {
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     compile 'com.github.nao20010128nao:HttpServerJava:d24e696'
-    compile 'com.github.nao20010128nao:Cryptorage:6df208aba5'
+    compile 'com.github.nao20010128nao:Cryptorage:0a206b8f5e'
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 
